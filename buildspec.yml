@@ -1,0 +1,17 @@
+version: 0.2
+phases:
+  install:
+    runtime-versions:
+      python: 3.8
+    commands:
+      - echo "Installing dependencies..."
+      - pip install -r requirements.txt
+  build:
+    commands:
+      - echo "Running tests..."
+      - pytest tests/
+      - echo "Building and triggering SageMaker pipeline..."
+      - python pipeline/create_and_run_pipeline.py
+artifacts:
+  files:
+    - '**/*'
